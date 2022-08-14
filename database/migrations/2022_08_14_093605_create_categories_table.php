@@ -15,9 +15,18 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->id();
-            $table->id();
+            $table->string('name');
+
+
+            $table->foreignId('parent_id')
+            ->references('id')
+            ->on('categories')
+            ->nullable()->unsigned();
+
             $table->timestamps();
+            $table->softDeletes();
+
+
         });
     }
 
